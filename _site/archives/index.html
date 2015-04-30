@@ -29,10 +29,39 @@
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+<script language="Javascript" type="text/javascript">
+function search_google()
+{
+  var query = document.getElementById("google-search").value;
+  window.open("http://google.com/search?q=" + query
+      + "%20site:" + "http://superclark.co");
+}
+</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+<script type='text/javascript'>
+var blocklink = ['http://humanorightswatch.org','http://o-o-6-o-o.com','http://darodar.com','http://blackhatworth.com','http://hulfingtonpost.com','http://bestwebsitesawards.com','http://darodar.com','http://buttons-for-website.com','http://ilovevitaly.co','http://semalt.com','http://priceg.com','http://simple-share-buttons.com','http://googlsucks.com','http://4webmasters.org','http://aliexpress.com','http://addons.mozilla.org/en-US/firefox/addon/ilovevitaly/'];
+for (var b = blocklink.length; b--;) {
+  if (document.referrer.match(blocklink[b]))
+    window.location = "http://www.google.com";
+}
+</script>
+
+
+
 
 </head>
-
-
 
 
 <body>
@@ -149,20 +178,28 @@
 
   
 
-  You can contact me via:
+  You can contact me via: <br />
 
   
-  <a href="mailto:zhangzongyangclark@gmail.com" title="mailto: zhangzongyangclark@gmail.com">Email</a> /
+  <a href="mailto:zhangzongyangclark@gmail.com" title="mailto: zhangzongyangclark@gmail.com"><i class="fa fa-envelope-square fa-3x"></i></a>&nbsp;
   
   
-  <a href="https://github.com/zzyclark" title="GithubID: zzyclark">Github</a> /
+  <a href="https://github.com/zzyclark" title="GithubID: zzyclark"><i class="fa fa-github-square fa-3x"></i></a>&nbsp;
   
   
-  <a href="https://twitter.com/Clark_theSuper" title="TwitterID: Clark_theSuper">Twitter</a>
-  
-
+  <a href="https://twitter.com/Clark_theSuper" title="TwitterID: Clark_theSuper"><i class="fa fa-twitter-square fa-3x"></i></a>
   
 
+  
+
+</div>
+
+<div class="sidebar-module">
+  <h4>Site Search</h4>
+  <form onsubmit="search_google()" >
+    <input type="text" id="google-search" placeholder="Google search" />
+    <input type="submit" name="sa" value="Go" />
+  </form>
 </div>
 
 <div class="sidebar-module">
@@ -219,18 +256,28 @@
 </div>
 
 
-
   
 
   <footer class="site-footer">
 
   <p>Copyright &copy; <a href="/">Superclark</a></p>
-  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
-  on 
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a>
+  on
   
   <a href="https://github.com/">Github</a>
   
-  </footer>
+
+
+  <div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+    <a title="Back To Top"><img src="/images/topbutton.png"/></a>
+  </div>
+
+  <script src="/js/jquery-1.9.1.min.js"></script>
+  <script src="/js/totop.js"></script>
+
+
+
+</footer>
 
 
 </div>
