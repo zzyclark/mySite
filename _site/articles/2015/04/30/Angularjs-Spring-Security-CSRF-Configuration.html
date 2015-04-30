@@ -7,24 +7,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Superclark">
-<title>Superclark</title>
-<meta property="og:description" content="This is a clark website.">
-<meta property="og:url" content="http://superclark.co/">
+<meta property="og:title" content="Angularjs Spring Security CSRF configuration">
+<title>Angularjs Spring Security CSRF configuration</title>
+<meta property="og:description" content="Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4...">
+<meta property="og:url" content="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 <meta property="og:site_name" content="Superclark">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@Clark_theSuper">
 <meta name="twitter:creator" content="@Clark_theSuper">
-<meta name="twitter:title" content="Superclark">
-<meta name="twitter:description" content="This is a clark website.">
-<meta name="twitter:url" content="http://superclark.co/">
+<meta name="twitter:title" content="Angularjs Spring Security CSRF configuration">
+<meta name="twitter:description" content="Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4...">
+<meta name="twitter:url" content="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 
 <meta name="keywords" content="Technology, clark, skiing">
 
 <link rel="icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://superclark.co/">
+<link rel="canonical" href="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 <link rel="alternate" type="application/atom+xml" title="Superclark" href="http://superclark.co/feed.xml" />
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -99,37 +99,32 @@
     
 
   <div class="page-content col-sm-8">
-    <div class="home">
-  <div class="post" itemscope itemtype="http://schema.org/BlogPosting" >
-    
-    
-  
-    <header class="post-header">
-      <h1 itemprop="name" class="post-title">
-        <a itemprop="url" class="post-link" href="/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">Angularjs Spring Security CSRF configuration</a>
-      </h1>
-      <meta itemprop="keywords" content="Angularjs,Spring Security" />
-      <p class="post-meta">
-      Posted in
-      
-      <a href="/categories/#articles">articles</a>&nbsp;
-      
-      
-      and tagged
-      
-      <a href="/tags/#Angularjs" title="Angularjs">Angularjs </a>, 
-      
-      <a href="/tags/#Spring Security" title="Spring Security">Spring Security </a>
-      
-      
-      <time itemprop="datePublished" datetime="2015-04-30">
-      on Apr 30, 2015
-      </time>
-      </p>
-    </header>
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <article class="post-content" itemprop="articleBody">
-      <p>Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4.0 and spring security 3.2.8. To prevent Cross-Site Request Forgery attack, I enable csrf in my spring security context.</p>
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">Angularjs Spring Security CSRF configuration</h1>
+    <meta itemprop="keywords" content="Angularjs,Spring Security" />
+    <p class="post-meta">
+    Posted in
+    
+    <a href="/categories/#articles">articles</a>&nbsp;
+     
+    
+    and tagged
+    
+    <a href="/tags/#Angularjs" title="Angularjs">Angularjs </a>, 
+    
+    <a href="/tags/#Spring Security" title="Spring Security">Spring Security </a>
+    
+    
+    <time itemprop="datePublished" datetime="2015-04-30">
+    on Apr 30, 2015
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4.0 and spring security 3.2.8. To prevent Cross-Site Request Forgery attack, I enable csrf in my spring security context.</p>
 
 <p>We can set a simple spring security context like this:</p>
 
@@ -211,12 +206,40 @@
 
 <p>Finally we will add this custom filter in our spring context.Now, we can use angularjs $http.post() to do server side data management. As for present, i found i still can use spring csrf input tag in my normal form post, this can give us lots of options to choose the most proper implementation in our project.</p>
 
-    </article> <hr />
-    
-    
-  
-  </div>
+  </article>
+  <hr />
 </div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="disabled"><a>&larr; Older</a></li>
+    
+    
+    <li class="disabled"><a>Newer &rarr;</a>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='superclark';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
 
     <section class="pager">
   
