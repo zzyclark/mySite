@@ -13,6 +13,6 @@ jThis theme is based on [Freshman theme](https://github.com/yulijia/freshman/).B
 
 <cite>Proudly enjoy using my site.</cite> <code>;)</code>
 
-<a href="https://www.flickr.com/photos/125798402@N08/14774531645" title="No Smoke by Clark Zhang, on Flickr"><img src="https://farm6.staticflickr.com/5577/14774531645_7e6466ddcd_z.jpg" width="640" height="415" alt="No Smoke" style=""></a>
+<a href="https://www.flickr.com/photos/125798402@N08/14774531645" title="No Smoke by Clark Zhang, on Flickr"><img src="https://farm6.staticflickr.com/5577/14774531645_7e6466ddcd_z.jpg" alt="No Smoke" style="border-radius: 0 ; width:640px; height:415px; "></a>
 
 #### I made this pictrue in my house, it's made by film camera.
