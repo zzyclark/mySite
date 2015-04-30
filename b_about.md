@@ -6,22 +6,14 @@ permalink: /about/
 ---
 
 
-### Freshman21 is a Jekyll theme.
+### Superclark is clark's tech site
 
-A tribute to Twenty Twelve and Twenty eleven.
+I come from wordpress, while i found jekyll is moreflexiable, and even more interesting. So i come here. This website is main to record my learning experience of software engineering.
 
-I like wordpress's theme Twenty Twelve and Twenty eleven very much. 
-So I called my Jekyll theme Freshman21 (Freshman <q>twenty-first</q> , it means twenty-first century, not twenty-one), this theme is based on my former theme [Freshman](https://github.com/yulijia/freshman/).
+This theme is based on [Freshman theme](https://github.com/yulijia/freshman/).Best thanks to the author.
 
-Freshman21 have two main page format, one is [single column](http://yulijia.net/en/  "see demo"), the other is two columns. For more details, please see the articles on the site.
+<cite>Proudly enjoy using my site.</cite> <code>;)</code>
 
-<cite>Proudly enjoy using Freshman21 theme.</cite> <code>;)</code>
+<img title="麋鹿" src="http://fmn.rrfmn.com/fmn059/20120223/2300/large_cTZY_4dc500000d7e121a.jpg" alt="麋鹿" width="auto" height="auto" />
 
-<img title="麋鹿" src="https://i.imgur.com/Mdc4szJl.jpg" alt="麋鹿" width="580" height="668" />
-
-#### Hi, the picture you have seen in the sample-page is a Père David's deer photoed by my friend at Beijing Milu Park, China.
-
-Milu(麋鹿) is the chinese name of Père David's deer.
-
-
-
+#### I made this pictrue in Lulea Sweden, it's one of my best memories.
