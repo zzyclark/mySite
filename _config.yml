@@ -3,8 +3,9 @@ description: "This is clark's blog site"
 
 url: "http://localhost:4000"
 
-paginate: 10
+paginate: 3
 
 markdown: rdiscount
 permalink: pretty
 pygments: true
+
