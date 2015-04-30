@@ -9,11 +9,10 @@ permalink: /about/
 ### Superclark is clark's tech site
 
 I come from wordpress, while i found jekyll is moreflexiable, and even more interesting. So i come here. This website is main to record my learning experience of software engineering.
-
-This theme is based on [Freshman theme](https://github.com/yulijia/freshman/).Best thanks to the author.
+jThis theme is based on [Freshman theme](https://github.com/yulijia/freshman/).Best thanks to the author.
 
 <cite>Proudly enjoy using my site.</cite> <code>;)</code>
 
-<img title="麋鹿" src="http://fmn.rrfmn.com/fmn059/20120223/2300/large_cTZY_4dc500000d7e121a.jpg" alt="麋鹿" width="auto" height="auto" />
+<a href="https://www.flickr.com/photos/125798402@N08/14774531645" title="No Smoke by Clark Zhang, on Flickr"><img src="https://farm6.staticflickr.com/5577/14774531645_7e6466ddcd_z.jpg" width="640" height="415" alt="No Smoke" style=""></a>
 
-#### I made this pictrue in Lulea Sweden, it's one of my best memories.
+#### I made this pictrue in my house, it's made by film camera.
