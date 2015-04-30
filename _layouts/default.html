@@ -1,12 +1,37 @@
-{% include header.html %}
-  <div class="row">
-    <div class="col-12 col-sm-8 col-lg-8 main">
-	    <h1>{{page.title}}</h1>
-	    <p>{{page.date | date: "%d-%B-%Y"}}</p>
-        {{ content }}
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+<div class="container">
+
+  {% include header.html %}
+
+  {% if site.default_column == "two" %}  
+
+  <div class="page-content col-sm-8">
+    {{ content }}
+    {% include post_pagination.html %}
+  </div>
+  {% include sidebar.html %}
+
+  {% else %}
+
+  <div class="page-content">
+    <div class="wrapper">
+      {{ content }}
     </div>
-    <div class="col-12 col-sm-4 col-lg-4 right">
-        {% include sidebar.html %}
-    </div>
+  </div>
+  {% include post_pagination.html %}
+
+  {% endif %}
+
+  {% include footer.html %}
+
 </div>
-{% include footer.html %}
+
+</body>
+
+</html>

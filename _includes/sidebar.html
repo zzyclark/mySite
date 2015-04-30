@@ -1,13 +1,9 @@
-<h3>About Me</h3>
-
-<p>Im clark, I like jekyll, its awsome!</p>
-
-<h3>Recent Posts</h3>
-<ul>
-	  {% for post in site.posts limit: 5 %}
-	      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-	  {% endfor %}
-</ul>
-
-
+<div class="col-sm-2">
+{% include Aboutme.html %}
+{% include Recent_Posts.html %}
+{% include Categories.html %}
+{% include Tags.html %}
+{% include Blogroll.html %}
+{% include Archives.html %}
+</div>
 
