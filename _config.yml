@@ -35,19 +35,19 @@ locales:
       Previous: "Older"
       Next: "Newer"
       PostedInCategories: "Posted in"
-      Taggedwith: "and tagged"  
+      Taggedwith: "and tagged"
       PostDate: "on "
     cn:
       Aboutme: "关于我"
       Archives: "存档"
-      Blogroll: "良师益友"        
-      Categories: "分类目录"    
+      Blogroll: "良师益友"
+      Categories: "分类目录"
       Copyright_Notice: "版权声明"
       Recent_Posts: "近期文章"
-      Tags: "标签" 
+      Tags: "标签"
       Previous: "前一页"
       Next: "后一页"
-      PostedInCategories: "目录:"   
+      PostedInCategories: "目录:"
       Taggedwith: "| 标签:"
       PostDate: "| 发表时间: "
 
@@ -57,8 +57,11 @@ locales:
 Blogroll:
     - name: Clark Zhang
       href: http://superclark.co
-      title: Clark's tech blog 
+      title: Clark's tech blog
 
+gems :
+  - jekyll-paginate
+  
 ### Build settings
 markdown: kramdown
 highlighter: pygments

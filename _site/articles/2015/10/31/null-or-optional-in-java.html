@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Null or Optional in Java">
+<title>Null or Optional in Java</title>
+<meta property="og:description" content="NullPointerException is the most annoying Exception which I hate the most. However, it’s also the Exception that has most appearance. For almost all the func...">
+<meta property="og:url" content="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+<meta property="og:site_name" content="Superclark">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Clark_theSuper">
+<meta name="twitter:creator" content="@Clark_theSuper">
+<meta name="twitter:title" content="Null or Optional in Java">
+<meta name="twitter:description" content="NullPointerException is the most annoying Exception which I hate the most. However, it’s also the Exception that has most appearance. For almost all the func...">
+<meta name="twitter:url" content="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+
+<meta name="keywords" content="Technology, clark, skiing">
+
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+<link rel="alternate" type="application/atom+xml" title="Superclark" href="http://superclark.co/feed.xml" />
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script language="Javascript" type="text/javascript">
+function search_google()
+{
+  var query = document.getElementById("google-search").value;
+  window.open("http://google.com/search?q=" + query
+      + "%20site:" + "http://superclark.co");
+}
+</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+<script type='text/javascript'>
+var blocklink = ['http://humanorightswatch.org','http://o-o-6-o-o.com','http://darodar.com','http://blackhatworth.com','http://hulfingtonpost.com','http://bestwebsitesawards.com','http://darodar.com','http://buttons-for-website.com','http://ilovevitaly.co','http://semalt.com','http://priceg.com','http://simple-share-buttons.com','http://googlsucks.com','http://4webmasters.org','http://aliexpress.com','http://addons.mozilla.org/en-US/firefox/addon/ilovevitaly/'];
+for (var b = blocklink.length; b--;) {
+  if (document.referrer.match(blocklink[b]))
+    window.location = "http://www.google.com";
+}
+</script>
+
+
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/">Superclark</a></h1>
+    <h3 class="site-meta">Technology and Skiing</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+        
+        <a class="page-link" href="/">Home</a>
+        
+        
+        
+        <a class="page-link" href="/about/">About</a>
+        
+        
+        
+        <a class="page-link" href="/archives/">Archives</a>
+        
+        
+        
+        <a class="page-link" href="/categories/">Categories</a>
+        
+        
+        
+        <a class="page-link" href="/tags/">Tags</a>
+        
+        
+        
+        <a class="page-link" href="/guestbook/">Guestbook</a>
+        
+        
+        
+        <a class="page-link" href="/feed.xml">Subscribe</a>
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    
+
+  <div class="page-content col-sm-8">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">Null or Optional in Java</h1>
+    <meta itemprop="keywords" content="Java" />
+    <p class="post-meta">
+    Posted in
+    
+    <a href="/categories/#articles">articles</a>&nbsp;
+     
+    
+    and tagged
+    
+    <a href="/tags/#Java" title="Java">Java </a>
+    
+    
+    <time itemprop="datePublished" datetime="2015-10-31">
+    on Oct 31, 2015
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>NullPointerException is the most annoying Exception which I hate the most. However, it’s also the Exception that has most appearance. For almost all the function parameter passed in, i need to check whether this Object is Null or not. If the Object is null, all the following code will fail. Unfortunately, it’s a runtime Exception, until the app is really running, we can’t find the error location. Sometimes, even we found the null object cause this error, we still need long time to find the reason which cause this object is null.</p>
+
+<p>To avoid this, we usually do null like this:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="k">if</span> <span class="o">(</span> <span class="kc">null</span> <span class="o">!=</span> <span class="n">objCheck</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">2</span>  <span class="c1">// your code after null check</span>
+<span class="lineno">3</span>  <span class="o">}</span></code></pre></figure>
+
+<p>So in our code, we can thousand of code check like above in order to avoid worse condition will happen. While this is not the only way to check this. In Java 8, we have Optional to do the same thing and even better.</p>
+
+<blockquote>
+  <p>Optional is a container object which may or may not contain a non-null value. If a value is present, isPresent() will return true and get() will return the value.</p>
+</blockquote>
+
+<p>Optional can be initialized by all the Object, include your own created Object.</p>
+
+<p>To initialize an Optional, we have three method, and mostly you will only use two of them, as I think.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//empty option</span>
+<span class="lineno">2</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">emptyOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span>  <span class="c1">// This will throw NullPointerException, we must confirm the object we pass is a non-null object</span>
+<span class="lineno">5</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">docNonNullOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">nullDocument</span><span class="o">);</span>
+<span class="lineno">6</span> 
+<span class="lineno">7</span>  <span class="c1">//This allow null object passed in</span>
+<span class="lineno">8</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">docNullableOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">docWithNullProperty</span><span class="o">);</span></code></pre></figure>
+
+<p>You can pass your object to <em>of()</em> and <em>ofNullable()</em>, no matter it’s a null or non-null object. <em>of()</em> will throw NullPointerException, while <em>ofNullable()</em> will create an empty Optional.</p>
+
+<p>We simply can use <em>get()</em> to get the object from Optional. If the optional is an empty optional, it will throw us a NoSuchElementException. While this is still not perfect, we only want to do something if the Optional really contains something. So we need to check whether the object inside the Optional is a null or a non-null object. To achieve this, we have two approach, <em>isPresent()</em> and <em>ifPresent()</em>. The first one returns a Boolean and second one can direct run certain code if the optional is not empty.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//use isPresent to check condition</span>
+<span class="lineno">2</span>  <span class="k">if</span> <span class="o">(</span><span class="n">docNullableOption</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+<span class="lineno">3</span>  <span class="c1">// content will be null, since we didn&#39;t check whether inside document all the property is non-null value.</span>
+<span class="lineno">4</span>     <span class="n">printVal</span><span class="o">(</span><span class="n">docNullableOption</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+<span class="lineno">5</span>  <span class="o">}</span>
+<span class="lineno">6</span> 
+<span class="lineno">7</span>  <span class="c1">//user ifPresent to consume some certain logic</span>
+<span class="lineno">8</span>  <span class="n">docNullableOption</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">printVal</span><span class="o">(</span><span class="n">d</span><span class="o">));</span></code></pre></figure>
+
+<p>If the Optional is really an empty optional, we don’t just throw a exception, but want to execute some default method. We can do this with <em>orElse()</em> and <em>orElseGet()</em></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//if option is empty return something else</span>
+<span class="lineno">2</span>  <span class="n">String</span> <span class="n">documentTitle</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getTitle</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">&quot;Empty Title&quot;</span><span class="o">);</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span>  <span class="c1">//if option is empty do something else</span>
+<span class="lineno">5</span>  <span class="n">String</span> <span class="n">documentContent</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">).</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">defaultContent</span><span class="o">());</span></code></pre></figure>
+
+<p>Sometimes check whether object itself is null is not enough. We also want to ensure the inner property is also not null once we consume it. To achieve this, we can use <em>map()</em> and <em>flatMap()</em></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//get document title option</span>
+<span class="lineno">2</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">docTitleOption</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getTitle</span><span class="o">);</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span>  <span class="c1">//difference between this one and map is that getContentOption directly return option, while getTitle just return normal Object</span>
+<span class="lineno">5</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">docContentOption</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">);</span></code></pre></figure>
+
+<p>Base on the method provide by Optional, we check whether the object is null or not, and also its property. Is it the best approach to avoid null in your code, hard to say. At least, we have an alternative way to do the null check. Be honest, I think null is the worst design in software history, 80% of my debugging time is used on how to solve a NullPointerException problem.</p>
+
+<p>The good thing is not only Java has a solution, other language also have more or less same method to avoid null (<a href="https://www.lucidchart.com/techblog/2015/08/31/the-worst-mistake-of-computer-science/">The worst mistake of computer science</a>). Some of them even don’t have null at all. If you are using other language, i think you can have other solution to avoid this ugly null in your code.</p>
+
+<p>If you are confused to the code showed above, you can check my original code on <a href="https://github.com/zzyclark/JavaOptionalTest">my github</a>.</p>
+
+  </article>
+  <hr />
+</div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="previous"><a href="/articles/2015/04/30/angularjs-spring-security-csrf-configuration.html" title="Angularjs Spring Security CSRF configuration">&larr; Older</a></li>
+    
+    
+    <li class="disabled"><a>Newer &rarr;</a>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='superclark';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    <section class="pager">
+  
+  
+</section>
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+  <h4>About Me</h4>
+  <img title="Clark Zhang" src="https://farm4.staticflickr.com/3924/buddyicons/125798402@N08_r.jpg" alt="Clark Zhang"/>
+  <span>Hi, this is Clark Zhang. I made Superclark to share leaning experience. Please enjoy it.</span>
+  <br />
+
+  
+
+  You can contact me via: <br />
+
+  
+  <a href="mailto:zhangzongyangclark@gmail.com" title="mailto: zhangzongyangclark@gmail.com"><i class="fa fa-envelope-square fa-3x"></i></a>&nbsp;
+  
+  
+  <a href="https://github.com/zzyclark" title="GithubID: zzyclark"><i class="fa fa-github-square fa-3x"></i></a>&nbsp;
+  
+  
+  <a href="https://twitter.com/Clark_theSuper" title="TwitterID: Clark_theSuper"><i class="fa fa-twitter-square fa-3x"></i></a>
+  
+
+  
+
+</div>
+
+<div class="sidebar-module">
+  <h4>Site Search</h4>
+  <form onsubmit="search_google()" >
+    <input type="text" id="google-search" placeholder="Google search" />
+    <input type="submit" name="sa" value="Go" />
+  </form>
+</div>
+
+<div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="//articles/2015/10/31/null-or-optional-in-java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
+  </li>
+  
+  <li>
+  <a href="//articles/2015/04/30/angularjs-spring-security-csrf-configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  
+  <li><a href="/categories/#articles" title="articles" rel="2">articles (2)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#Angularjs" title="Angularjs" rel="1">Angularjs</a> &nbsp;
+  
+    <a href="/tags/#Spring Security" title="Spring Security" rel="1">Spring Security</a> &nbsp;
+  
+    <a href="/tags/#Java" title="Java" rel="1">Java</a> &nbsp;
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Blogroll</h4>
+  
+  <li><a href="http://superclark.co" title="Clark's tech blog">Clark Zhang</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Archives</h4>
+
+  
+  
+  
+  
+  
+  <li id="2015" > <a href="/archives/#2015">2015</a></li>
+  
+  
+  
+  
+  
+
+</div>
+
+
+</div>
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/">Superclark</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a>
+  on
+  
+  <a href="https://github.com/">Github</a>
+  
+
+
+  <div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+    <a title="Back To Top"><img src="/images/topbutton.png"/></a>
+  </div>
+
+  <script src="/js/jquery-1.9.1.min.js"></script>
+  <script src="/js/totop.js"></script>
+
+
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
