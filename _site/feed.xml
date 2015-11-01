@@ -5,9 +5,27 @@
     <description>This is a clark website.</description>
     <link>http://superclark.co/</link>
     <atom:link href="http://superclark.co/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 31 Oct 2015 23:08:13 +0800</pubDate>
-    <lastBuildDate>Sat, 31 Oct 2015 23:08:13 +0800</lastBuildDate>
+    <pubDate>Sun, 01 Nov 2015 18:13:27 +0800</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 18:13:27 +0800</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
+    
+      <item>
+        <title>Ski trip in Bei Da Hu</title>
+        <description>&lt;p&gt;Ski trip in Bei Da Hu ski resort, Ji Lin, China. 
+This is my first ski video powerd by &lt;em&gt;iMovie&lt;/em&gt;. Please enjoy it.&lt;/p&gt;
+
+&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/bdFatw0naxI&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+</description>
+        <pubDate>Sun, 01 Nov 2015 00:00:00 +0800</pubDate>
+        <link>http://superclark.co/ski/2015/11/01/ski-trip-in-bei-da-hu-resort.html</link>
+        <guid isPermaLink="true">http://superclark.co/ski/2015/11/01/ski-trip-in-bei-da-hu-resort.html</guid>
+        
+        <category>Ski Travel</category>
+        
+        
+        <category>ski</category>
+        
+      </item>
     
       <item>
         <title>Null or Optional in Java</title>
