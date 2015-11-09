@@ -10,7 +10,7 @@
 <meta property="og:title" content="Null or Optional in Java">
 <title>Null or Optional in Java</title>
 <meta property="og:description" content="NullPointerException is the most annoying Exception which I hate the most. However, it’s also the Exception that has most appearance. For almost all the func...">
-<meta property="og:url" content="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+<meta property="og:url" content="http://superclark.co/articles/2015/10/31/Null-or-Optional-in-Java.html">
 <meta property="og:site_name" content="Superclark">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -18,13 +18,13 @@
 <meta name="twitter:creator" content="@Clark_theSuper">
 <meta name="twitter:title" content="Null or Optional in Java">
 <meta name="twitter:description" content="NullPointerException is the most annoying Exception which I hate the most. However, it’s also the Exception that has most appearance. For almost all the func...">
-<meta name="twitter:url" content="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+<meta name="twitter:url" content="http://superclark.co/articles/2015/10/31/Null-or-Optional-in-Java.html">
 
 <meta name="keywords" content="Technology, clark, skiing">
 
 <link rel="icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://superclark.co/articles/2015/10/31/null-or-optional-in-java.html">
+<link rel="canonical" href="http://superclark.co/articles/2015/10/31/Null-or-Optional-in-Java.html">
 <link rel="alternate" type="application/atom+xml" title="Superclark" href="http://superclark.co/feed.xml" />
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -155,9 +155,9 @@ for (var b = blocklink.length; b--;) {
 
 <p>To avoid this, we usually do null like this:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="k">if</span> <span class="o">(</span> <span class="kc">null</span> <span class="o">!=</span> <span class="n">objCheck</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span> <span class="k">if</span> <span class="o">(</span> <span class="kc">null</span> <span class="o">!=</span> <span class="n">objCheck</span><span class="o">)</span> <span class="o">{</span>
 <span class="lineno">2</span>  <span class="c1">// your code after null check</span>
-<span class="lineno">3</span>  <span class="o">}</span></code></pre></figure>
+<span class="lineno">3</span>  <span class="o">}</span></code></pre></div>
 
 <p>So in our code, we can thousand of code check like above in order to avoid worse condition will happen. While this is not the only way to check this. In Java 8, we have Optional to do the same thing and even better.</p>
 
@@ -169,43 +169,43 @@ for (var b = blocklink.length; b--;) {
 
 <p>To initialize an Optional, we have three method, and mostly you will only use two of them, as I think.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//empty option</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span> <span class="c1">//empty option</span>
 <span class="lineno">2</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">emptyOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
 <span class="lineno">3</span> 
 <span class="lineno">4</span>  <span class="c1">// This will throw NullPointerException, we must confirm the object we pass is a non-null object</span>
 <span class="lineno">5</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">docNonNullOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">nullDocument</span><span class="o">);</span>
 <span class="lineno">6</span> 
 <span class="lineno">7</span>  <span class="c1">//This allow null object passed in</span>
-<span class="lineno">8</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">docNullableOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">docWithNullProperty</span><span class="o">);</span></code></pre></figure>
+<span class="lineno">8</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">docNullableOption</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">docWithNullProperty</span><span class="o">);</span></code></pre></div>
 
 <p>You can pass your object to <em>of()</em> and <em>ofNullable()</em>, no matter it’s a null or non-null object. <em>of()</em> will throw NullPointerException, while <em>ofNullable()</em> will create an empty Optional.</p>
 
 <p>We simply can use <em>get()</em> to get the object from Optional. If the optional is an empty optional, it will throw us a NoSuchElementException. While this is still not perfect, we only want to do something if the Optional really contains something. So we need to check whether the object inside the Optional is a null or a non-null object. To achieve this, we have two approach, <em>isPresent()</em> and <em>ifPresent()</em>. The first one returns a Boolean and second one can direct run certain code if the optional is not empty.</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//use isPresent to check condition</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span> <span class="c1">//use isPresent to check condition</span>
 <span class="lineno">2</span>  <span class="k">if</span> <span class="o">(</span><span class="n">docNullableOption</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
 <span class="lineno">3</span>  <span class="c1">// content will be null, since we didn&#39;t check whether inside document all the property is non-null value.</span>
 <span class="lineno">4</span>     <span class="n">printVal</span><span class="o">(</span><span class="n">docNullableOption</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
 <span class="lineno">5</span>  <span class="o">}</span>
 <span class="lineno">6</span> 
 <span class="lineno">7</span>  <span class="c1">//user ifPresent to consume some certain logic</span>
-<span class="lineno">8</span>  <span class="n">docNullableOption</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">printVal</span><span class="o">(</span><span class="n">d</span><span class="o">));</span></code></pre></figure>
+<span class="lineno">8</span>  <span class="n">docNullableOption</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">printVal</span><span class="o">(</span><span class="n">d</span><span class="o">));</span></code></pre></div>
 
 <p>If the Optional is really an empty optional, we don’t just throw a exception, but want to execute some default method. We can do this with <em>orElse()</em> and <em>orElseGet()</em></p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//if option is empty return something else</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span> <span class="c1">//if option is empty return something else</span>
 <span class="lineno">2</span>  <span class="n">String</span> <span class="n">documentTitle</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getTitle</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">&quot;Empty Title&quot;</span><span class="o">);</span>
 <span class="lineno">3</span> 
 <span class="lineno">4</span>  <span class="c1">//if option is empty do something else</span>
-<span class="lineno">5</span>  <span class="n">String</span> <span class="n">documentContent</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">).</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">defaultContent</span><span class="o">());</span></code></pre></figure>
+<span class="lineno">5</span>  <span class="n">String</span> <span class="n">documentContent</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">).</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">defaultContent</span><span class="o">());</span></code></pre></div>
 
 <p>Sometimes check whether object itself is null is not enough. We also want to ensure the inner property is also not null once we consume it. To achieve this, we can use <em>map()</em> and <em>flatMap()</em></p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span>  <span class="c1">//get document title option</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">1</span> <span class="c1">//get document title option</span>
 <span class="lineno">2</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">docTitleOption</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getTitle</span><span class="o">);</span>
 <span class="lineno">3</span> 
 <span class="lineno">4</span>  <span class="c1">//difference between this one and map is that getContentOption directly return option, while getTitle just return normal Object</span>
-<span class="lineno">5</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">docContentOption</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">);</span></code></pre></figure>
+<span class="lineno">5</span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">docContentOption</span> <span class="o">=</span> <span class="n">docNullableOption</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Document:</span><span class="o">:</span><span class="n">getContentOption</span><span class="o">);</span></code></pre></div>
 
 <p>Base on the method provide by Optional, we check whether the object is null or not, and also its property. Is it the best approach to avoid null in your code, hard to say. At least, we have an alternative way to do the null check. Be honest, I think null is the worst design in software history, 80% of my debugging time is used on how to solve a NullPointerException problem.</p>
 
@@ -221,10 +221,10 @@ for (var b = blocklink.length; b--;) {
 <section class="pager">
   <ul>
     
-    <li class="previous"><a href="/articles/2015/04/30/angularjs-spring-security-csrf-configuration.html" title="Angularjs Spring Security CSRF configuration">&larr; Older</a></li>
+    <li class="previous"><a href="/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html" title="Angularjs Spring Security CSRF configuration">&larr; Older</a></li>
     
     
-    <li class="next"><a href="/ski/2015/11/01/ski-trip-in-bei-da-hu-resort.html" title="Ski trip in Bei Da Hu">Newer &rarr;</a></li>
+    <li class="next"><a href="/ski/2015/11/01/Ski-Trip-in-Bei-Da-Hu-Resort.html" title="Ski trip in Bei Da Hu">Newer &rarr;</a></li>
     
   </ul>
 </section>
@@ -292,15 +292,19 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//ski/2015/11/01/ski-trip-in-bei-da-hu-resort.html" title="Ski trip in Bei Da Hu" rel="bookmark">Ski trip in Bei Da Hu</a>
+  <a href="//articles/2015/11/09/Lambda-Expression-in-Java.html" title="Lambda Expression in Java" rel="bookmark">Lambda Expression in Java</a>
   </li>
   
   <li>
-  <a href="//articles/2015/10/31/null-or-optional-in-java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
+  <a href="//ski/2015/11/01/Ski-Trip-in-Bei-Da-Hu-Resort.html" title="Ski trip in Bei Da Hu" rel="bookmark">Ski trip in Bei Da Hu</a>
   </li>
   
   <li>
-  <a href="//articles/2015/04/30/angularjs-spring-security-csrf-configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
+  <a href="//articles/2015/10/31/Null-or-Optional-in-Java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
+  </li>
+  
+  <li>
+  <a href="//articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
   </li>
   
 </div>
@@ -309,7 +313,7 @@ var disqus_shortname ='superclark';
 <div class="sidebar-module">
   <h4>Categories</h4>
   
-  <li><a href="/categories/#articles" title="articles" rel="2">articles (2)</a></li>
+  <li><a href="/categories/#articles" title="articles" rel="3">articles (3)</a></li>
   
   <li><a href="/categories/#ski" title="ski" rel="1">ski (1)</a></li>
   
@@ -323,9 +327,11 @@ var disqus_shortname ='superclark';
   
     <a href="/tags/#Spring Security" title="Spring Security" rel="1">Spring Security</a> &nbsp;
   
-    <a href="/tags/#Java" title="Java" rel="1">Java</a> &nbsp;
+    <a href="/tags/#Java" title="Java" rel="2">Java</a> &nbsp;
   
-    <a href="/tags/#Ski Travel" title="Ski Travel" rel="1">Ski Travel</a> &nbsp;
+    <a href="/tags/#Ski" title="Ski" rel="1">Ski</a> &nbsp;
+  
+    <a href="/tags/#Travel" title="Travel" rel="1">Travel</a> &nbsp;
   
 </div>
 
@@ -347,6 +353,9 @@ var disqus_shortname ='superclark';
   
   
   <li id="2015" > <a href="/archives/#2015">2015</a></li>
+  
+  
+  
   
   
   

@@ -10,7 +10,7 @@
 <meta property="og:title" content="Angularjs Spring Security CSRF configuration">
 <title>Angularjs Spring Security CSRF configuration</title>
 <meta property="og:description" content="Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4...">
-<meta property="og:url" content="http://superclark.co/articles/2015/04/30/angularjs-spring-security-csrf-configuration.html">
+<meta property="og:url" content="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 <meta property="og:site_name" content="Superclark">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -18,13 +18,13 @@
 <meta name="twitter:creator" content="@Clark_theSuper">
 <meta name="twitter:title" content="Angularjs Spring Security CSRF configuration">
 <meta name="twitter:description" content="Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4...">
-<meta name="twitter:url" content="http://superclark.co/articles/2015/04/30/angularjs-spring-security-csrf-configuration.html">
+<meta name="twitter:url" content="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 
 <meta name="keywords" content="Technology, clark, skiing">
 
 <link rel="icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://superclark.co/articles/2015/04/30/angularjs-spring-security-csrf-configuration.html">
+<link rel="canonical" href="http://superclark.co/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">
 <link rel="alternate" type="application/atom+xml" title="Superclark" href="http://superclark.co/feed.xml" />
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -157,7 +157,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>We can set a simple spring security context like this:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
 <span class="lineno"> 2</span>     <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
 <span class="lineno"> 3</span>     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="lineno"> 4</span>     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans</span>
@@ -178,7 +178,7 @@ for (var b = blocklink.length; b--;) {
 <span class="lineno">19</span>       <span class="nt">&lt;/authentication-provider&gt;</span>
 <span class="lineno">20</span>     <span class="nt">&lt;/authentication-manager&gt;</span>
 <span class="lineno">21</span> 
-<span class="lineno">22</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></figure>
+<span class="lineno">22</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></div>
 
 <p>Now, for normal form we can insert a hidden input to post: the hidden param name set to _csrf.parameterName and param value set to _csrf.token.</p>
 
@@ -188,7 +188,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>To accomplish this, we need to change csrf headerName in our spring security context:</p>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
 <span class="lineno"> 2</span>     <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
 <span class="lineno"> 3</span>     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="lineno"> 4</span>     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans</span>
@@ -211,13 +211,13 @@ for (var b = blocklink.length; b--;) {
 <span class="lineno">21</span>     <span class="nt">&lt;beans:bean</span> <span class="na">id=</span><span class="s">&quot;csrfTokenRepository&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository&quot;</span><span class="nt">&gt;</span>
 <span class="lineno">22</span>       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;headerName&quot;</span> <span class="na">value=</span><span class="s">&quot;X-XSRF-TOKEN&quot;</span> <span class="nt">/&gt;</span>
 <span class="lineno">23</span>     <span class="nt">&lt;/beans:bean&gt;</span>
-<span class="lineno">24</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></figure>
+<span class="lineno">24</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></div>
 
 <p>For angularjs, we will use <a href="http://github.com/aditzel/spring-security-csrf-token-interceptor">spring-security-csrf-token-interceptor</a> to get xsrf token from spring. Here we should give best thanks to the author aditzel for this easy tool. To use this tool is just adding this module to our angular app. Here i won’t write the detail. This interceptor will call from spring to get our xsrf token. So we also need a filter in our spring to send xsrf token for each request.</p>
 
 <p>The custom filter will write like this:</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CsrfFilter</span> <span class="kd">extends</span> <span class="n">OncePerRequestFilter</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CsrfFilter</span> <span class="kd">extends</span> <span class="n">OncePerRequestFilter</span>
 <span class="lineno"> 2</span> <span class="o">{</span>
 <span class="lineno"> 3</span>     <span class="nd">@Override</span>
 <span class="lineno"> 4</span>     <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
@@ -231,7 +231,7 @@ for (var b = blocklink.length; b--;) {
 <span class="lineno">12</span>         <span class="o">}</span>
 <span class="lineno">13</span>         <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
 <span class="lineno">14</span>     <span class="o">}</span>
-<span class="lineno">15</span> <span class="o">}</span></code></pre></figure>
+<span class="lineno">15</span> <span class="o">}</span></code></pre></div>
 
 <p>Finally we will add this custom filter in our spring context.Now, we can use angularjs $http.post() to do server side data management. As for present, i found i still can use spring csrf input tag in my normal form post, this can give us lots of options to choose the most proper implementation in our project.</p>
 
@@ -246,7 +246,7 @@ for (var b = blocklink.length; b--;) {
     <li class="disabled"><a>&larr; Older</a></li>
     
     
-    <li class="next"><a href="/articles/2015/10/31/null-or-optional-in-java.html" title="Null or Optional in Java">Newer &rarr;</a></li>
+    <li class="next"><a href="/articles/2015/10/31/Null-or-Optional-in-Java.html" title="Null or Optional in Java">Newer &rarr;</a></li>
     
   </ul>
 </section>
@@ -314,15 +314,19 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//ski/2015/11/01/ski-trip-in-bei-da-hu-resort.html" title="Ski trip in Bei Da Hu" rel="bookmark">Ski trip in Bei Da Hu</a>
+  <a href="//articles/2015/11/09/Lambda-Expression-in-Java.html" title="Lambda Expression in Java" rel="bookmark">Lambda Expression in Java</a>
   </li>
   
   <li>
-  <a href="//articles/2015/10/31/null-or-optional-in-java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
+  <a href="//ski/2015/11/01/Ski-Trip-in-Bei-Da-Hu-Resort.html" title="Ski trip in Bei Da Hu" rel="bookmark">Ski trip in Bei Da Hu</a>
   </li>
   
   <li>
-  <a href="//articles/2015/04/30/angularjs-spring-security-csrf-configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
+  <a href="//articles/2015/10/31/Null-or-Optional-in-Java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
+  </li>
+  
+  <li>
+  <a href="//articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
   </li>
   
 </div>
@@ -331,7 +335,7 @@ var disqus_shortname ='superclark';
 <div class="sidebar-module">
   <h4>Categories</h4>
   
-  <li><a href="/categories/#articles" title="articles" rel="2">articles (2)</a></li>
+  <li><a href="/categories/#articles" title="articles" rel="3">articles (3)</a></li>
   
   <li><a href="/categories/#ski" title="ski" rel="1">ski (1)</a></li>
   
@@ -345,9 +349,11 @@ var disqus_shortname ='superclark';
   
     <a href="/tags/#Spring Security" title="Spring Security" rel="1">Spring Security</a> &nbsp;
   
-    <a href="/tags/#Java" title="Java" rel="1">Java</a> &nbsp;
+    <a href="/tags/#Java" title="Java" rel="2">Java</a> &nbsp;
   
-    <a href="/tags/#Ski Travel" title="Ski Travel" rel="1">Ski Travel</a> &nbsp;
+    <a href="/tags/#Ski" title="Ski" rel="1">Ski</a> &nbsp;
+  
+    <a href="/tags/#Travel" title="Travel" rel="1">Travel</a> &nbsp;
   
 </div>
 
@@ -369,6 +375,9 @@ var disqus_shortname ='superclark';
   
   
   <li id="2015" > <a href="/archives/#2015">2015</a></li>
+  
+  
+  
   
   
   
