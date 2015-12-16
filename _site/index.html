@@ -117,6 +117,8 @@ for (var b = blocklink.length; b--;) {
         
         
         
+        
+        
       </div>
     </nav>
 
@@ -135,9 +137,9 @@ for (var b = blocklink.length; b--;) {
 
     <header class="post-header">
       <h1 itemprop="name" class="post-title">
-        <a itemprop="url" class="post-link" href="/articles/2015/12/03/Set%20Your%20CouchDB%20with%20HibernateOGM.html">CouchDB With HibernateOGM</a>
+        <a itemprop="url" class="post-link" href="/articles/2015/12/16/CouchDB-with-Ektorp.html">CouchDB With Ektorp</a>
       </h1>
-      <meta itemprop="keywords" content="CouchDB,Hibernate,Java" />
+      <meta itemprop="keywords" content="CouchDB,Java" />
       <p class="post-meta">
       Posted in
       
@@ -148,7 +150,41 @@ for (var b = blocklink.length; b--;) {
       
       <a href="/tags/#CouchDB" title="CouchDB">CouchDB </a>, 
       
-      <a href="/tags/#Hibernate" title="Hibernate">Hibernate </a>, 
+      <a href="/tags/#Java" title="Java">Java </a>
+      
+      
+      <time itemprop="datePublished" datetime="2015-12-16">
+        on Dec 16, 2015
+      </time>
+      </p>
+    </header>
+
+    <article class="post-content" itemprop="articleBody">
+      
+      <p>From official <a href="https://wiki.apache.org/couchdb/Getting_started_with_Java">CouchDB wiki</a>, there are a lot of Java CouchDB API, like Ektorp, JRelax, jcouchdb etc. Here I pick the first one to implement it, because I always think the first one will be the most recommended one. Last time, I have already showed the implementation about HibernateOGM on CouchDB, so why we still need this Java API. My idea is that HibernateOGM comes with HibernateORM which means it will keep both the advantage and disadvantage. The initial purpose of Hibernate is to find a way to better implement our SQL database, which makes it giant or in other word <strong>bloated</strong>. In some way, to the contrary. The native CouchDB java API is built only to support CouchDB, which means most time it will be tiny, fast and have better functionality support for native CouchDB specifics.</p>
+
+
+      <p style="text-align: right"><a href="/articles/2015/12/16/CouchDB-with-Ektorp.html">Read more</a></p>
+      
+    </article>
+    <hr />
+
+    
+
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/articles/2015/12/03/CouchDB%20with%20HibernateOGM.html">CouchDB With HibernateOGM</a>
+      </h1>
+      <meta itemprop="keywords" content="CouchDB,Java" />
+      <p class="post-meta">
+      Posted in
+      
+      <a href="/categories/#articles">articles</a>&nbsp;
+      
+      
+      and tagged
+      
+      <a href="/tags/#CouchDB" title="CouchDB">CouchDB </a>, 
       
       <a href="/tags/#Java" title="Java">Java </a>
       
@@ -164,7 +200,7 @@ for (var b = blocklink.length; b--;) {
       <p>Base on an article I have read recently, I try to start get my hand dirty with various NoSQL database. This <a href="http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis">article</a> compares among lots of NoSQL databases famous today. I should thank the author who give me a general idea about the difference between these NoSQL databases. These NoSQL databases can be separated by store technologies. Like CouchDB, Hbase, they use classic document and BigTable stores, Neo4j use Graph databases etc.</p>
 
 
-      <p style="text-align: right"><a href="/articles/2015/12/03/Set%20Your%20CouchDB%20with%20HibernateOGM.html">Read more</a></p>
+      <p style="text-align: right"><a href="/articles/2015/12/03/CouchDB%20with%20HibernateOGM.html">Read more</a></p>
       
     </article>
     <hr />
@@ -276,47 +312,13 @@ This is my first ski video powerd by <em>iMovie</em>. Please enjoy it.</p>
 
     
 
-    <header class="post-header">
-      <h1 itemprop="name" class="post-title">
-        <a itemprop="url" class="post-link" href="/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">Angularjs Spring Security CSRF configuration</a>
-      </h1>
-      <meta itemprop="keywords" content="Angularjs,Spring Security" />
-      <p class="post-meta">
-      Posted in
-      
-      <a href="/categories/#articles">articles</a>&nbsp;
-      
-      
-      and tagged
-      
-      <a href="/tags/#Angularjs" title="Angularjs">Angularjs </a>, 
-      
-      <a href="/tags/#Spring Security" title="Spring Security">Spring Security </a>
-      
-      
-      <time itemprop="datePublished" datetime="2015-04-30">
-        on Apr 30, 2015
-      </time>
-      </p>
-    </header>
-
-    <article class="post-content" itemprop="articleBody">
-      
-      <p>Recently, my current project is built by Spring mvc framework, and base on project requirement, also integrated with Spring security. My project use spring 4.0 and spring security 3.2.8. To prevent Cross-Site Request Forgery attack, I enable csrf in my spring security context.</p>
-
-
-      <p style="text-align: right"><a href="/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">Read more</a></p>
-      
-    </article>
-    <hr />
-
-    
-
   </div>
 </div>
 
     <section class="pager">
   
+  
+  <li class="next"><a href="/page2/" title="Older">Older &rarr;</a></li>
   
 </section>
 
@@ -359,7 +361,11 @@ This is my first ski video powerd by <em>iMovie</em>. Please enjoy it.</p>
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//articles/2015/12/03/Set%20Your%20CouchDB%20with%20HibernateOGM.html" title="CouchDB With HibernateOGM" rel="bookmark">CouchDB With HibernateOGM</a>
+  <a href="//articles/2015/12/16/CouchDB-with-Ektorp.html" title="CouchDB With Ektorp" rel="bookmark">CouchDB With Ektorp</a>
+  </li>
+  
+  <li>
+  <a href="//articles/2015/12/03/CouchDB%20with%20HibernateOGM.html" title="CouchDB With HibernateOGM" rel="bookmark">CouchDB With HibernateOGM</a>
   </li>
   
   <li>
@@ -374,17 +380,13 @@ This is my first ski video powerd by <em>iMovie</em>. Please enjoy it.</p>
   <a href="//articles/2015/10/31/Null-or-Optional-in-Java.html" title="Null or Optional in Java" rel="bookmark">Null or Optional in Java</a>
   </li>
   
-  <li>
-  <a href="//articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html" title="Angularjs Spring Security CSRF configuration" rel="bookmark">Angularjs Spring Security CSRF configuration</a>
-  </li>
-  
 </div>
 
 
 <div class="sidebar-module">
   <h4>Categories</h4>
   
-  <li><a href="/categories/#articles" title="articles" rel="4">articles (4)</a></li>
+  <li><a href="/categories/#articles" title="articles" rel="5">articles (5)</a></li>
   
   <li><a href="/categories/#ski" title="ski" rel="1">ski (1)</a></li>
   
@@ -398,15 +400,13 @@ This is my first ski video powerd by <em>iMovie</em>. Please enjoy it.</p>
   
     <a href="/tags/#Spring Security" title="Spring Security" rel="1">Spring Security</a> &nbsp;
   
-    <a href="/tags/#Java" title="Java" rel="3">Java</a> &nbsp;
+    <a href="/tags/#Java" title="Java" rel="4">Java</a> &nbsp;
   
     <a href="/tags/#Ski" title="Ski" rel="1">Ski</a> &nbsp;
   
     <a href="/tags/#Travel" title="Travel" rel="1">Travel</a> &nbsp;
   
-    <a href="/tags/#CouchDB" title="CouchDB" rel="1">CouchDB</a> &nbsp;
-  
-    <a href="/tags/#Hibernate" title="Hibernate" rel="1">Hibernate</a> &nbsp;
+    <a href="/tags/#CouchDB" title="CouchDB" rel="2">CouchDB</a> &nbsp;
   
 </div>
 
@@ -428,6 +428,9 @@ This is my first ski video powerd by <em>iMovie</em>. Please enjoy it.</p>
   
   
   <li id="2015" > <a href="/archives/#2015">2015</a></li>
+  
+  
+  
   
   
   

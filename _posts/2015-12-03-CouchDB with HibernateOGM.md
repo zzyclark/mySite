@@ -6,7 +6,6 @@ author: Clark
 category: articles
 tags:
 - CouchDB
-- Hibernate
 - Java
 description: A quick set up for HibernateOGM on CouchDB
 comments: true
