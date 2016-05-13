@@ -167,7 +167,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>and you will receive:</p>
 
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&quot;ok&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">"ok"</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span></code></pre></div>
 
 <p>The database is setup ready, now let’s get our hand dirty to connect the data with HibernateOGM. We also have other API option to call your database, like Ektorp which I will explain how to set it up in future article.</p>
 
@@ -200,19 +200,19 @@ for (var b = blocklink.length; b--;) {
 
 <p>In our JPA configuration: <strong>persistence.xml</strong>, we will set our transaction server provider, the database connection info etc.</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;couchdb-hibernateogm&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;JTA&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">"couchdb-hibernateogm"</span> <span class="na">transaction-type=</span><span class="s">"JTA"</span><span class="nt">&gt;</span>
       <span class="c">&lt;!-- Use Hibernate OGM provider: configuration will be transparent --&gt;</span>
       <span class="nt">&lt;provider&gt;</span>org.hibernate.ogm.jpa.HibernateOgmPersistence<span class="nt">&lt;/provider&gt;</span>
       <span class="nt">&lt;properties&gt;</span>
           <span class="c">&lt;!-- defines which JTA Transaction we plan to use --&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.provider&quot;</span> <span class="na">value=</span><span class="s">&quot;COUCHDB_EXPERIMENTAL&quot;</span><span class="nt">/&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.host&quot;</span> <span class="na">value=</span><span class="s">&quot;localhost&quot;</span><span class="nt">/&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.port&quot;</span> <span class="na">value=</span><span class="s">&quot;5984&quot;</span><span class="nt">/&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.database&quot;</span> <span class="na">value=</span><span class="s">&quot;couchdbwithhibernateogm&quot;</span><span class="nt">/&gt;</span>
-          <span class="c">&lt;!-- If you didn&#39;t set up your database in CouchDB, this will help you create the database --&gt;</span>
-          <span class="c">&lt;!-- &lt;property name=&quot;hibernate.ogm.datastore.create_database&quot; value=&quot;true&quot;/&gt; --&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.username&quot;</span> <span class="na">value=</span><span class="s">&quot;username&quot;</span><span class="nt">/&gt;</span>
-          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.ogm.datastore.password&quot;</span> <span class="na">value=</span><span class="s">&quot;password&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.provider"</span> <span class="na">value=</span><span class="s">"COUCHDB_EXPERIMENTAL"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.host"</span> <span class="na">value=</span><span class="s">"localhost"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.port"</span> <span class="na">value=</span><span class="s">"5984"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.database"</span> <span class="na">value=</span><span class="s">"couchdbwithhibernateogm"</span><span class="nt">/&gt;</span>
+          <span class="c">&lt;!-- If you didn't set up your database in CouchDB, this will help you create the database --&gt;</span>
+          <span class="c">&lt;!-- &lt;property name="hibernate.ogm.datastore.create_database" value="true"/&gt; --&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.username"</span> <span class="na">value=</span><span class="s">"username"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.ogm.datastore.password"</span> <span class="na">value=</span><span class="s">"password"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;/properties&gt;</span>
   <span class="nt">&lt;/persistence-unit&gt;</span></code></pre></div>
 
@@ -230,10 +230,10 @@ for (var b = blocklink.length; b--;) {
 <span class="kn">import</span> <span class="nn">javax.persistence.CascadeType</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
 
-<span class="cm">/**</span>
-<span class="cm"> * @Author clark</span>
-<span class="cm"> * @Date 30-Nov-2015</span>
-<span class="cm"> */</span>
+<span class="cm">/**
+ * @Author clark
+ * @Date 30-Nov-2015
+ */</span>
 <span class="nd">@Entity</span>
 <span class="nd">@AssociationStorage</span><span class="o">(</span><span class="n">AssociationStorageType</span><span class="o">.</span><span class="na">ASSOCIATION_DOCUMENT</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dog</span> <span class="o">{</span>
@@ -243,42 +243,42 @@ for (var b = blocklink.length; b--;) {
 
     <span class="nd">@Version</span>
     <span class="nd">@Generated</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">GenerationTime</span><span class="o">.</span><span class="na">ALWAYS</span><span class="o">)</span>
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;_rev&quot;</span><span class="o">)</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"_rev"</span><span class="o">)</span>
     <span class="kd">private</span> <span class="n">String</span> <span class="n">revision</span><span class="o">;</span>
     <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
     <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">cascade</span> <span class="o">=</span> <span class="n">CascadeType</span><span class="o">.</span><span class="na">PERSIST</span><span class="o">)</span>
     <span class="kd">private</span> <span class="n">Breed</span> <span class="n">breed</span><span class="o">;</span>
 
 
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">getName</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Long</span> <span class="n">getId</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">setId</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getRevision</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">getRevision</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">revision</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRevision</span><span class="o">(</span><span class="n">String</span> <span class="n">revision</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">setRevision</span><span class="o">(</span><span class="n">String</span> <span class="n">revision</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">revision</span> <span class="o">=</span> <span class="n">revision</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="n">Breed</span> <span class="nf">getBreed</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Breed</span> <span class="n">getBreed</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">breed</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBreed</span><span class="o">(</span><span class="n">Breed</span> <span class="n">breed</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">setBreed</span><span class="o">(</span><span class="n">Breed</span> <span class="n">breed</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">breed</span> <span class="o">=</span> <span class="n">breed</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
@@ -296,7 +296,7 @@ for (var b = blocklink.length; b--;) {
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">...</span>
 <span class="nd">@Version</span>
 <span class="nd">@Generated</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">GenerationTime</span><span class="o">.</span><span class="na">ALWAYS</span><span class="o">)</span>
-<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;_rev&quot;</span><span class="o">)</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"_rev"</span><span class="o">)</span>
 <span class="kd">private</span> <span class="n">String</span> <span class="n">revision</span><span class="o">;</span>
 <span class="o">...</span></code></pre></div>
 
@@ -314,7 +314,7 @@ for (var b = blocklink.length; b--;) {
 <span class="n">TransactionManager</span> <span class="n">tm</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="na">arjuna</span><span class="o">.</span><span class="na">ats</span><span class="o">.</span><span class="na">jta</span><span class="o">.</span><span class="na">TransactionManager</span><span class="o">.</span><span class="na">transactionManager</span><span class="o">();</span>
 
 <span class="c1">//build the EntityManagerFactory as you would build in in Hibernate Core</span>
-<span class="n">EntityManagerFactory</span> <span class="n">emf</span> <span class="o">=</span> <span class="n">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span> <span class="s">&quot;couchdb-hibernateogm&quot;</span> <span class="o">);</span>
+<span class="n">EntityManagerFactory</span> <span class="n">emf</span> <span class="o">=</span> <span class="n">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span> <span class="s">"couchdb-hibernateogm"</span> <span class="o">);</span>
 
 <span class="n">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
 <span class="o">...</span></code></pre></div>
@@ -322,10 +322,10 @@ for (var b = blocklink.length; b--;) {
 <p>I will create a new Dog entity. Here I have already set the CascadeType for Breed, so create Dog will automatically create related Breed.</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">...</span>
-<span class="n">Dog</span> <span class="n">dina</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Dog</span><span class="o">();</span>
-<span class="n">dina</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="s">&quot;Nancy&quot;</span> <span class="o">);</span>
-<span class="n">Breed</span> <span class="n">breed</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Breed</span><span class="o">();</span>
-<span class="n">breed</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;Ding&quot;</span><span class="o">);</span>
+<span class="n">Dog</span> <span class="n">dina</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="o">();</span>
+<span class="n">dina</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="s">"Nancy"</span> <span class="o">);</span>
+<span class="n">Breed</span> <span class="n">breed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Breed</span><span class="o">();</span>
+<span class="n">breed</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Ding"</span><span class="o">);</span>
 <span class="n">dina</span><span class="o">.</span><span class="na">setBreed</span><span class="o">(</span><span class="n">breed</span><span class="o">);</span>
 
 <span class="n">tm</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
@@ -436,7 +436,7 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Extension" rel="bookmark">Build Your Own Cache Busting Extension</a>
+  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Service" rel="bookmark">Build Your Own Cache Busting Service</a>
   </li>
   
   <li>

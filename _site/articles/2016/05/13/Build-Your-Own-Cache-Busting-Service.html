@@ -7,8 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Build Your Own Cache Busting Extension">
-<title>Build Your Own Cache Busting Extension</title>
+<meta property="og:title" content="Build Your Own Cache Busting Service">
+<title>Build Your Own Cache Busting Service</title>
 <meta property="og:description" content="Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of th...">
 <meta property="og:url" content="http://superclark.co/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">
 <meta property="og:site_name" content="Superclark">
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@Clark_theSuper">
 <meta name="twitter:creator" content="@Clark_theSuper">
-<meta name="twitter:title" content="Build Your Own Cache Busting Extension">
+<meta name="twitter:title" content="Build Your Own Cache Busting Service">
 <meta name="twitter:description" content="Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of th...">
 <meta name="twitter:url" content="http://superclark.co/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">
 
@@ -133,7 +133,7 @@ for (var b = blocklink.length; b--;) {
     <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 itemprop="name" class="post-title">Build Your Own Cache Busting Extension</h1>
+    <h1 itemprop="name" class="post-title">Build Your Own Cache Busting Service</h1>
     <meta itemprop="keywords" content="Nodejs,Javascript" />
     <p class="post-meta">
     Posted in
@@ -159,17 +159,17 @@ for (var b = blocklink.length; b--;) {
 
 <p>To solve this, we may use <strong>Cache-Buster</strong>. A Cache-Buster is a unique piece of code that prevents a browser from reusing files that cached, or saved to a temporary memory file. Cache-Buster doesn’t stop a browser from caching the file, but just prevents is from reusing it.</p>
 
-<p>Thought this article, I will show how to build our own cache busting extension. We use Node.js to build our server. Express framework will be used in fasten our development, it has already provided a mature dev process for web application in Node.js. During this article, lots of express technologies will be used. I expect you have some knowledge about express, or you can refer to the <a href="http://expressjs.com/">express tutorial</a> first which will only cost you 5 minutes. Our extension will all bing with Express, but you can customize it to any other framework or technologies, like Java.</p>
+<p>Thought this article, I will show how to build our own cache busting service. We use Node.js to build our server. Express framework will be used in fasten our development, it has already provided a mature dev process for web application in Node.js. During this article, lots of express technologies will be used. I expect you have some knowledge about express, or you can refer to the <a href="http://expressjs.com/">express tutorial</a> first which will only cost you 5 minutes. Our extension will all bind with Express, but you can customize it to any other framework or technologies, like Java.</p>
 
-<p>Main logic of our extension is to give a different name for all the static files in each new release. New name can refer to our release number or deployment time. Here we use both to rename.</p>
+<p>Main algorithm of our extension is to give a different name for all the static files in each new release. New name can refer to our release number or deployment time. Here we use both to rename.</p>
 
 <p><strong>Original file:</strong></p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/angular/sha256.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/angular/sha256.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 
 <p><strong>Renamed file:</strong></p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/angular/sha256.min.js?v=0.1.27-1463110454476&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/angular/sha256.min.js?v=0.1.27-1463110454476"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 
 <p>New renamed file includes version information <strong><em>0.1.27</em></strong> and unix timestamp <strong><em>1463110454476</em></strong> which indicate our deployment time. Each of our new release, all the static file will have a url link, this will force our user to request the static file from the server again, but not from browser cache.</p>
 
@@ -184,7 +184,7 @@ for (var b = blocklink.length; b--;) {
 <p>In our express <strong>app.js</strong>, we will initialize our extension in this way.</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
-<span class="kd">var</span> <span class="nx">cacheBust</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;omni-cache-busted&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cacheBust</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'omni-cache-busted'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="p">...</span>
 
@@ -195,7 +195,7 @@ for (var b = blocklink.length; b--;) {
 <p>Finally, we only need to use cacheBust function in jade template to request our static files.</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
-<span class="o">!=</span> <span class="nx">cacheBust</span><span class="p">(</span><span class="s1">&#39;/angular/sha256.min.js&#39;</span><span class="p">)</span>
+<span class="o">!=</span> <span class="nx">cacheBust</span><span class="p">(</span><span class="s1">'/angular/sha256.min.js'</span><span class="p">)</span>
 <span class="p">...</span></code></pre></div>
 
 <p>Static files will be request in the following way:</p>
@@ -205,9 +205,9 @@ for (var b = blocklink.length; b--;) {
 <p>All the code you can find in my <a href="https://github.com/zzyclark/omni-cache-busted">github</a>. If you also Node.js and Express, you can directly use my npm package <a href="https://www.npmjs.com/package/omni-cache-busted">omni-cache-busted</a>. To use this as npm package, please add this in your <strong>package.json</strong> file.</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
-<span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+<span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
   <span class="p">...</span>
-  <span class="s2">&quot;omni-cache-busted&quot;</span><span class="o">:</span> <span class="s2">&quot;~1.0.2&quot;</span>
+  <span class="s2">"omni-cache-busted"</span><span class="err">:</span> <span class="s2">"~1.0.2"</span>
   <span class="p">...</span>
 <span class="p">}</span>
 <span class="p">...</span></code></pre></div>
@@ -292,7 +292,7 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Extension" rel="bookmark">Build Your Own Cache Busting Extension</a>
+  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Service" rel="bookmark">Build Your Own Cache Busting Service</a>
   </li>
   
   <li>

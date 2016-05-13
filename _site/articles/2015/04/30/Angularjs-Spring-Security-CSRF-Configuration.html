@@ -159,83 +159,153 @@ for (var b = blocklink.length; b--;) {
 
 <p>We can set a simple spring security context like this:</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
-<span class="lineno"> 2</span>     <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
-<span class="lineno"> 3</span>     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-<span class="lineno"> 4</span>     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans</span>
-<span class="lineno"> 5</span> <span class="s">                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
-<span class="lineno"> 6</span> <span class="s">                        http://www.springframework.org/schema/security</span>
-<span class="lineno"> 7</span> <span class="s">                        http://www.springframework.org/schema/security/spring-security-3.2.xsd&quot;</span><span class="nt">&gt;</span>
-<span class="lineno"> 8</span> 
-<span class="lineno"> 9</span>     <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-<span class="lineno">10</span>         <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&quot;/admin**&quot;</span> <span class="na">access=</span><span class="s">&quot;ROLE_SUPERUSER&quot;</span> <span class="nt">/&gt;</span>
-<span class="lineno">11</span>         <span class="nt">&lt;csrf/&gt;</span>
-<span class="lineno">12</span>     <span class="nt">&lt;/http&gt;</span>
-<span class="lineno">13</span> 
-<span class="lineno">14</span>     <span class="nt">&lt;authentication-manager&gt;</span>
-<span class="lineno">15</span>       <span class="nt">&lt;authentication-provider&gt;</span>
-<span class="lineno">16</span>         <span class="nt">&lt;user-service&gt;</span>
-<span class="lineno">17</span>         <span class="nt">&lt;user</span> <span class="na">name=</span><span class="s">&quot;clark&quot;</span> <span class="na">password=</span><span class="s">&quot;123456&quot;</span> <span class="na">authorities=</span><span class="s">&quot;ROLE_SUPERUSER&quot;</span> <span class="nt">/&gt;</span>
-<span class="lineno">18</span>         <span class="nt">&lt;/user-service&gt;</span>
-<span class="lineno">19</span>       <span class="nt">&lt;/authentication-provider&gt;</span>
-<span class="lineno">20</span>     <span class="nt">&lt;/authentication-manager&gt;</span>
-<span class="lineno">21</span> 
-<span class="lineno">22</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td><td class="code"><pre><span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/security"</span>
+    <span class="na">xmlns:beans=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span>
+                        <span class="err">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
+                        <span class="err">http://www.springframework.org/schema/security</span>
+                        <span class="err">http://www.springframework.org/schema/security/spring-security-3.2.xsd"</span><span class="nt">&gt;</span>
 
-<p>Now, for normal form we can insert a hidden input to post: the hidden param name set to _csrf.parameterName and param value set to _csrf.token.</p>
+    <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">"/admin**"</span> <span class="na">access=</span><span class="s">"ROLE_SUPERUSER"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;csrf/&gt;</span>
+    <span class="nt">&lt;/http&gt;</span>
 
-<p>If we just use normal form post, everything is perfect now. But if we want to have a better front side user experience, for example, we want to use ajax to handle data and send data to server in order to stay on a static page, normal spring security csrf setting is not enough.</p>
+    <span class="nt">&lt;authentication-manager&gt;</span>
+      <span class="nt">&lt;authentication-provider&gt;</span>
+        <span class="nt">&lt;user-service&gt;</span>
+        <span class="nt">&lt;user</span> <span class="na">name=</span><span class="s">"clark"</span> <span class="na">password=</span><span class="s">"123456"</span> <span class="na">authorities=</span><span class="s">"ROLE_SUPERUSER"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/user-service&gt;</span>
+      <span class="nt">&lt;/authentication-provider&gt;</span>
+    <span class="nt">&lt;/authentication-manager&gt;</span>
 
-<p>Base on spring docs, if we use jQuery or rest.js, it’s easy for us to setup, because following the spring docs is enough. But the trouble is that i use angularjs to do the front side data handling, angularjs has its own csrf protection setting, which is xsrf. Now, spring csrf normal setting is not enough for us.  We need to change spring csrf token to angularjs xsrf token.</p>
+<span class="nt">&lt;/beans:beans&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table>
 
-<p>To accomplish this, we need to change csrf headerName in our spring security context:</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/security&quot;</span>
-<span class="lineno"> 2</span>     <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
-<span class="lineno"> 3</span>     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-<span class="lineno"> 4</span>     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans</span>
-<span class="lineno"> 5</span> <span class="s">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
-<span class="lineno"> 6</span> <span class="s">    http://www.springframework.org/schema/security</span>
-<span class="lineno"> 7</span> <span class="s">    http://www.springframework.org/schema/security/spring-security-3.2.xsd&quot;</span><span class="nt">&gt;</span>
-<span class="lineno"> 8</span> 
-<span class="lineno"> 9</span>     <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-<span class="lineno">10</span>         <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&quot;/admin**&quot;</span> <span class="na">access=</span><span class="s">&quot;ROLE_SUPERUSER&quot;</span> <span class="nt">/&gt;</span>
-<span class="lineno">11</span>         <span class="nt">&lt;csrf</span> <span class="na">token-repository-ref=</span><span class="s">&quot;csrfTokenRepository&quot;</span><span class="nt">&gt;</span>
-<span class="lineno">12</span>     <span class="nt">&lt;/http&gt;</span>
-<span class="lineno">13</span> 
-<span class="lineno">14</span>     <span class="nt">&lt;authentication-manager&gt;</span>
-<span class="lineno">15</span>       <span class="nt">&lt;authentication-provider&gt;</span>
-<span class="lineno">16</span>         <span class="nt">&lt;user-service&gt;</span>
-<span class="lineno">17</span>         <span class="nt">&lt;user</span> <span class="na">name=</span><span class="s">&quot;clark&quot;</span> <span class="na">password=</span><span class="s">&quot;123456&quot;</span> <span class="na">authorities=</span><span class="s">&quot;ROLE_SUPERUSER&quot;</span> <span class="nt">/&gt;</span>
-<span class="lineno">18</span>         <span class="nt">&lt;/user-service&gt;</span>
-<span class="lineno">19</span>       <span class="nt">&lt;/authentication-provider&gt;</span>
-<span class="lineno">20</span>     <span class="nt">&lt;/authentication-manager&gt;</span>
-<span class="lineno">21</span>     <span class="nt">&lt;beans:bean</span> <span class="na">id=</span><span class="s">&quot;csrfTokenRepository&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository&quot;</span><span class="nt">&gt;</span>
-<span class="lineno">22</span>       <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;headerName&quot;</span> <span class="na">value=</span><span class="s">&quot;X-XSRF-TOKEN&quot;</span> <span class="nt">/&gt;</span>
-<span class="lineno">23</span>     <span class="nt">&lt;/beans:bean&gt;</span>
-<span class="lineno">24</span> <span class="nt">&lt;/beans:beans&gt;</span></code></pre></div>
 
-<p>For angularjs, we will use <a href="http://github.com/aditzel/spring-security-csrf-token-interceptor">spring-security-csrf-token-interceptor</a> to get xsrf token from spring. Here we should give best thanks to the author aditzel for this easy tool. To use this tool is just adding this module to our angular app. Here i won’t write the detail. This interceptor will call from spring to get our xsrf token. So we also need a filter in our spring to send xsrf token for each request.</p>
+Now, for normal form we can insert a hidden input to post: the hidden param name set to _csrf.parameterName and param value set to _csrf.token.
 
-<p>The custom filter will write like this:</p>
+If we just use normal form post, everything is perfect now. But if we want to have a better front side user experience, for example, we want to use ajax to handle data and send data to server in order to stay on a static page, normal spring security csrf setting is not enough.
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CsrfFilter</span> <span class="kd">extends</span> <span class="n">OncePerRequestFilter</span>
-<span class="lineno"> 2</span> <span class="o">{</span>
-<span class="lineno"> 3</span>     <span class="nd">@Override</span>
-<span class="lineno"> 4</span>     <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
-<span class="lineno"> 5</span>     <span class="o">{</span>
-<span class="lineno"> 6</span>         <span class="n">CsrfToken</span> <span class="n">csrf</span> <span class="o">=</span> <span class="o">(</span><span class="n">CsrfToken</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">CsrfToken</span><span class="o">.</span><span class="na">class</span>
-<span class="lineno"> 7</span>                 <span class="o">.</span><span class="na">getName</span><span class="o">());</span>
-<span class="lineno"> 8</span>         <span class="k">if</span> <span class="o">(</span><span class="n">csrf</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 9</span>             <span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Cookie</span><span class="o">(</span><span class="s">&quot;XSRF-TOKEN&quot;</span><span class="o">,</span> <span class="n">csrf</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
-<span class="lineno">10</span>             <span class="n">cookie</span><span class="o">.</span><span class="na">setPath</span><span class="o">(</span><span class="s">&quot;/&quot;</span><span class="o">);</span>
-<span class="lineno">11</span>             <span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
-<span class="lineno">12</span>         <span class="o">}</span>
-<span class="lineno">13</span>         <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-<span class="lineno">14</span>     <span class="o">}</span>
-<span class="lineno">15</span> <span class="o">}</span></code></pre></div>
+Base on spring docs, if we use jQuery or rest.js, it’s easy for us to setup, because following the spring docs is enough. But the trouble is that i use angularjs to do the front side data handling, angularjs has its own csrf protection setting, which is xsrf. Now, spring csrf normal setting is not enough for us.  We need to change spring csrf token to angularjs xsrf token.
 
-<p>Finally we will add this custom filter in our spring context.Now, we can use angularjs $http.post() to do server side data management. As for present, i found i still can use spring csrf input tag in my normal form post, this can give us lots of options to choose the most proper implementation in our project.</p>
+To accomplish this, we need to change csrf headerName in our spring security context:
+
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></td><td class="code"><pre><span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/security"</span>
+    <span class="na">xmlns:beans=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span>
+    <span class="err">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span>
+    <span class="err">http://www.springframework.org/schema/security</span>
+    <span class="err">http://www.springframework.org/schema/security/spring-security-3.2.xsd"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">"/admin**"</span> <span class="na">access=</span><span class="s">"ROLE_SUPERUSER"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;csrf</span> <span class="na">token-repository-ref=</span><span class="s">"csrfTokenRepository"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/http&gt;</span>
+
+    <span class="nt">&lt;authentication-manager&gt;</span>
+      <span class="nt">&lt;authentication-provider&gt;</span>
+        <span class="nt">&lt;user-service&gt;</span>
+        <span class="nt">&lt;user</span> <span class="na">name=</span><span class="s">"clark"</span> <span class="na">password=</span><span class="s">"123456"</span> <span class="na">authorities=</span><span class="s">"ROLE_SUPERUSER"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/user-service&gt;</span>
+      <span class="nt">&lt;/authentication-provider&gt;</span>
+    <span class="nt">&lt;/authentication-manager&gt;</span>
+    <span class="nt">&lt;beans:bean</span> <span class="na">id=</span><span class="s">"csrfTokenRepository"</span> <span class="na">class=</span><span class="s">"org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"headerName"</span> <span class="na">value=</span><span class="s">"X-XSRF-TOKEN"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/beans:bean&gt;</span>
+<span class="nt">&lt;/beans:beans&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table>
+
+
+
+For angularjs, we will use [spring-security-csrf-token-interceptor](http://github.com/aditzel/spring-security-csrf-token-interceptor) to get xsrf token from spring. Here we should give best thanks to the author aditzel for this easy tool. To use this tool is just adding this module to our angular app. Here i won’t write the detail. This interceptor will call from spring to get our xsrf token. So we also need a filter in our spring to send xsrf token for each request.
+
+The custom filter will write like this:
+
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CsrfFilter</span> <span class="kd">extends</span> <span class="n">OncePerRequestFilter</span>
+<span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="n">doFilterInternal</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
+    <span class="o">{</span>
+        <span class="n">CsrfToken</span> <span class="n">csrf</span> <span class="o">=</span> <span class="o">(</span><span class="n">CsrfToken</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">CsrfToken</span><span class="o">.</span><span class="na">class</span>
+                <span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">csrf</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Cookie</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cookie</span><span class="o">(</span><span class="s">"XSRF-TOKEN"</span><span class="o">,</span> <span class="n">csrf</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
+            <span class="n">cookie</span><span class="o">.</span><span class="na">setPath</span><span class="o">(</span><span class="s">"/"</span><span class="o">);</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">addCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+
+
+
+Finally we will add this custom filter in our spring context.Now, we can use angularjs $http.post() to do server side data management. As for present, i found i still can use spring csrf input tag in my normal form post, this can give us lots of options to choose the most proper implementation in our project.
+</code></pre></div></code></pre></div></code></pre></div>
 
   </article>
   <hr />
@@ -316,7 +386,7 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Extension" rel="bookmark">Build Your Own Cache Busting Extension</a>
+  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Service" rel="bookmark">Build Your Own Cache Busting Service</a>
   </li>
   
   <li>

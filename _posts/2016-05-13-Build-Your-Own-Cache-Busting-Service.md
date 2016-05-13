@@ -1,6 +1,6 @@
 ---
 published: true
-title: Build Your Own Cache Busting Extension
+title: Build Your Own Cache Busting Service
 layout: post
 author: Clark
 category: articles
@@ -14,9 +14,9 @@ Every time we release our new version web application, we always have a caching 
 
 To solve this, we may use **Cache-Buster**. A Cache-Buster is a unique piece of code that prevents a browser from reusing files that cached, or saved to a temporary memory file. Cache-Buster doesn't stop a browser from caching the file, but just prevents is from reusing it.
 
-Thought this article, I will show how to build our own cache busting extension. We use Node.js to build our server. Express framework will be used in fasten our development, it has already provided a mature dev process for web application in Node.js. During this article, lots of express technologies will be used. I expect you have some knowledge about express, or you can refer to the [express tutorial](http://expressjs.com/) first which will only cost you 5 minutes. Our extension will all bing with Express, but you can customize it to any other framework or technologies, like Java.
+Thought this article, I will show how to build our own cache busting service. We use Node.js to build our server. Express framework will be used in fasten our development, it has already provided a mature dev process for web application in Node.js. During this article, lots of express technologies will be used. I expect you have some knowledge about express, or you can refer to the [express tutorial](http://expressjs.com/) first which will only cost you 5 minutes. Our extension will all bind with Express, but you can customize it to any other framework or technologies, like Java.
 
-Main logic of our extension is to give a different name for all the static files in each new release. New name can refer to our release number or deployment time. Here we use both to rename.
+Main algorithm of our extension is to give a different name for all the static files in each new release. New name can refer to our release number or deployment time. Here we use both to rename.
 
 **Original file:**
 {% highlight HTML%}

@@ -159,7 +159,7 @@ for (var b = blocklink.length; b--;) {
 
 <p>How’s performance, so far so good. While, our code looks like a little bit dirty. Can you imagine such code like this:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">findAdultUser</span><span class="o">(</span><span class="n">userList</span><span class="o">,</span> <span class="k">new</span> <span class="nf">CheckAdultUserService</span><span class="o">());</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">findAdultUser</span><span class="o">(</span><span class="n">userList</span><span class="o">,</span> <span class="k">new</span> <span class="n">CheckAdultUserService</span><span class="o">());</span></code></pre></div>
 
 <p>I pass a service object to this function. We can’t this approach is wrong, but can we have any better approach to let our code looks more elegant and clean. In Java 8, we have Lambda Expression enable us to do this, it treats functionality as method argument, or code as data.</p>
 
@@ -182,7 +182,7 @@ for (var b = blocklink.length; b--;) {
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CheckAdultUserPredicator</span> <span class="kd">implements</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="n">test</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
@@ -191,7 +191,7 @@ for (var b = blocklink.length; b--;) {
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserNameMapper</span> <span class="kd">implements</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">apply</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
@@ -200,14 +200,14 @@ for (var b = blocklink.length; b--;) {
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NameDataConsumer</span> <span class="kd">implements</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">accept</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
 
 <p>Then we will create a function to combine all these service together to print all adult user name.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">findAdultUserName</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">,</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">findAdultUserName</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">,</span>
   <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">predicator</span><span class="o">,</span>
   <span class="n">Function</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">mapper</span><span class="o">,</span>
   <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">)</span> <span class="o">{</span>
@@ -222,9 +222,9 @@ for (var b = blocklink.length; b--;) {
 <p>In our main function, we will call like this:</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">findAdultUserName</span><span class="o">(</span><span class="n">userList</span><span class="o">,</span>
-                <span class="k">new</span> <span class="nf">CheckAdultUserPredicator</span><span class="o">(),</span>
-                <span class="k">new</span> <span class="nf">UserNameMapper</span><span class="o">(),</span>
-                <span class="k">new</span> <span class="nf">NameDataConsumer</span><span class="o">());</span></code></pre></div>
+                <span class="k">new</span> <span class="n">CheckAdultUserPredicator</span><span class="o">(),</span>
+                <span class="k">new</span> <span class="n">UserNameMapper</span><span class="o">(),</span>
+                <span class="k">new</span> <span class="n">NameDataConsumer</span><span class="o">());</span></code></pre></div>
 
 <p>Finally, we did it. Seems a lot of work have been done, and our code size increased a lot. You will not like this, now let’s do this with Lambda Expression.</p>
 
@@ -332,7 +332,7 @@ var disqus_shortname ='superclark';
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Extension" rel="bookmark">Build Your Own Cache Busting Extension</a>
+  <a href="//articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html" title="Build Your Own Cache Busting Service" rel="bookmark">Build Your Own Cache Busting Service</a>
   </li>
   
   <li>
