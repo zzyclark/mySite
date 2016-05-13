@@ -7,24 +7,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Archives">
-<title>Archives</title>
-<meta property="og:description" content="This is a clark website.">
-<meta property="og:url" content="http://superclark.co/archives/">
+<meta property="og:title" content="Build Your Own Cache Busting Extension">
+<title>Build Your Own Cache Busting Extension</title>
+<meta property="og:description" content="Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of th...">
+<meta property="og:url" content="http://superclark.co/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">
 <meta property="og:site_name" content="Superclark">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@Clark_theSuper">
 <meta name="twitter:creator" content="@Clark_theSuper">
-<meta name="twitter:title" content="Archives">
-<meta name="twitter:description" content="This is a clark website.">
-<meta name="twitter:url" content="http://superclark.co/archives/">
+<meta name="twitter:title" content="Build Your Own Cache Busting Extension">
+<meta name="twitter:description" content="Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of th...">
+<meta name="twitter:url" content="http://superclark.co/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">
 
 <meta name="keywords" content="Technology, clark, skiing">
 
 <link rel="icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://superclark.co/archives/">
+<link rel="canonical" href="http://superclark.co/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">
 <link rel="alternate" type="application/atom+xml" title="Superclark" href="http://superclark.co/feed.xml" />
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -130,93 +130,112 @@ for (var b = blocklink.length; b--;) {
     
 
   <div class="page-content col-sm-8">
-    <div class="post">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title">Archives</h1>
+    <h1 itemprop="name" class="post-title">Build Your Own Cache Busting Extension</h1>
+    <meta itemprop="keywords" content="Nodejs,Javascript" />
+    <p class="post-meta">
+    Posted in
+    
+    <a href="/categories/#articles">articles</a>&nbsp;
+     
+    
+    and tagged
+    
+    <a href="/tags/#Nodejs" title="Nodejs">Nodejs </a>, 
+    
+    <a href="/tags/#Javascript" title="Javascript">Javascript </a>
+    
+    
+    <time itemprop="datePublished" datetime="2016-05-13">
+    on May 13, 2016
+    </time>
+    </p>
   </header>
 
-  <article class="post-content about"> 
-    <ul class="tags-box">
+  <article class="post-content" itemprop="articleBody">
+    <p>Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of the will not change. When user try to use our new release, they may refer the Javascript cached in their browser, since the new one share the same name with the one cached. We can solve this by changing cache expiration in the <strong>Cache-Control</strong> header, but this is not the best solution. User may request the same file again and again, even there is no new version release. These requests will cause much useless bandwidth cost and seriously reduce Page loading performance.</p>
 
+<p>To solve this, we may use <strong>Cache-Buster</strong>. A Cache-Buster is a unique piece of code that prevents a browser from reusing files that cached, or saved to a temporary memory file. Cache-Buster doesn’t stop a browser from caching the file, but just prevents is from reusing it.</p>
 
+<p>Thought this article, I will show how to build our own cache busting extension. We use Node.js to build our server. Express framework will be used in fasten our development, it has already provided a mature dev process for web application in Node.js. During this article, lots of express technologies will be used. I expect you have some knowledge about express, or you can refer to the <a href="http://expressjs.com/">express tutorial</a> first which will only cost you 5 minutes. Our extension will all bing with Express, but you can customize it to any other framework or technologies, like Java.</p>
 
+<p>Main logic of our extension is to give a different name for all the static files in each new release. New name can refer to our release number or deployment time. Here we use both to rename.</p>
 
+<p><strong>Original file:</strong></p>
 
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/angular/sha256.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 
+<p><strong>Renamed file:</strong></p>
 
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/angular/sha256.min.js?v=0.1.27-1463110454476&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 
-<li id="2016">2016</li>
+<p>New renamed file includes version information <strong><em>0.1.27</em></strong> and unix timestamp <strong><em>1463110454476</em></strong> which indicate our deployment time. Each of our new release, all the static file will have a url link, this will force our user to request the static file from the server again, but not from browser cache.</p>
 
-<time datetime="2016-05-13">
-2016-05-13
-</time>
-&raquo; <a href="/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">Build your own cache busting extension</a><br />
+<p>By using Express, we can customize some express function which can be called from jade directly. Inside our extension <strong>omni-cache-busted.js</strong>, we can declare our function handler as below. We can use <strong>cacheBust</strong> function in our jade template now.</p>
 
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">cacheBust</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">handler</span> <span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">app</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">cacheBust</span> <span class="o">=</span> <span class="nx">cacheBust</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+<span class="p">};</span></code></pre></div>
 
+<p>In the cacheBust function, we can write our own logic after get the information of each static file name. You can refer more in my github.</p>
 
-<time datetime="2016-05-13">
-2016-05-13
-</time>
-&raquo; <a href="/articles/2016/05/13/Build-Your-Own-Cache-Busting-Extension.html">Build your own cache busting service</a><br />
+<p>In our express <strong>app.js</strong>, we will initialize our extension in this way.</p>
 
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="kd">var</span> <span class="nx">cacheBust</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;omni-cache-busted&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="p">...</span>
 
+<span class="p">...</span>
+<span class="nx">cacheBust</span><span class="p">.</span><span class="nx">handler</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="p">...</span></code></pre></div>
 
+<p>Finally, we only need to use cacheBust function in jade template to request our static files.</p>
 
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="o">!=</span> <span class="nx">cacheBust</span><span class="p">(</span><span class="s1">&#39;/angular/sha256.min.js&#39;</span><span class="p">)</span>
+<span class="p">...</span></code></pre></div>
 
+<p>Static files will be request in the following way:</p>
 
-<li id="2015">2015</li>
-
-<time datetime="2015-12-16">
-2015-12-16
-</time>
-&raquo; <a href="/articles/2015/12/16/CouchDB-with-Ektorp.html">Couchdb with ektorp</a><br />
-
-
-
-<time datetime="2015-12-03">
-2015-12-03
-</time>
-&raquo; <a href="/articles/2015/12/03/CouchDB%20with%20HibernateOGM.html">Couchdb with hibernateogm</a><br />
-
-
-
-<time datetime="2015-11-09">
-2015-11-09
-</time>
-&raquo; <a href="/articles/2015/11/09/Lambda-Expression-in-Java.html">Lambda expression in java</a><br />
-
-
-
-<time datetime="2015-11-01">
-2015-11-01
-</time>
-&raquo; <a href="/ski/2015/11/01/Ski-Trip-in-Bei-Da-Hu-Resort.html">Ski trip in bei da hu</a><br />
-
-
-
-<time datetime="2015-10-31">
-2015-10-31
-</time>
-&raquo; <a href="/articles/2015/10/31/Null-or-Optional-in-Java.html">Null or optional in java</a><br />
-
-
-
-<time datetime="2015-04-30">
-2015-04-30
-</time>
-&raquo; <a href="/articles/2015/04/30/Angularjs-Spring-Security-CSRF-Configuration.html">Angularjs spring security csrf configuration</a><br />
-
-
-
-
-</ul>
+<p><img src="http://superclark.co/images/Cache-Busting.png" alt="Chrome Console" /></p>
 
   </article>
+  <hr />
+</div>
 
-  
 
-</div> 
+<section class="pager">
+  <ul>
+    
+    <li class="previous"><a href="/articles/2016/05/13/Build-Your-Own-Cache-Busting-Extension.html" title="Build Your Own Cache Busting Service">&larr; Older</a></li>
+    
+    
+    <li class="disabled"><a>Newer &rarr;</a>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='superclark';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
 
     <section class="pager">
   
