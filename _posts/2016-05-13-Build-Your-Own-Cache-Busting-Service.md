@@ -63,3 +63,16 @@ Finally, we only need to use cacheBust function in jade template to request our 
 Static files will be request in the following way:
 
 ![Chrome Console]({{ site.url }}/images/Cache-Busting.png)
+
+
+All the code you can find in my [github](https://github.com/zzyclark/omni-cache-busted). If you also Node.js and Express, you can directly use my npm package [omni-cache-busted](https://www.npmjs.com/package/omni-cache-busted). To use this as npm package, please add this in your **package.json** file.
+
+{% highlight JAVASCRIPT%}
+...
+"dependencies": {
+  ...
+  "omni-cache-busted": "~1.0.2"
+  ...
+}
+...
+{% endhighlight %}
