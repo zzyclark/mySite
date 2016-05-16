@@ -161,7 +161,7 @@ for (var b = blocklink.length; b--;) {
 
     <article class="post-content" itemprop="articleBody">
       
-      <p>Every time we release our new version web application, we always have a caching problem. We may change some code in our Javascript file, while the name of the will not change. When user try to use our new release, they may refer the Javascript cached in their browser, since the new one share the same name with the one cached. We can solve this by changing cache expiration in the <strong>Cache-Control</strong> header, but this is not the best solution. User may request the same file again and again, even there is no new version release. These requests will cause much useless bandwidth cost and seriously reduce Page loading performance.</p>
+      <p>Every time we release our new version web application, we always have a caching problem. We may change some code in our static file, for example, javascript, css, image file. When user try to use our new release, they may refer the static file cached in their browser, since we haven’t change the static file name. We can solve this problem by changing cache expiration in the <strong>Cache-Control</strong> header, but this is not the best solution. User may request the same file again and again, even there is no new version release. These requests will cause much useless bandwidth cost and seriously reduce Page loading performance.</p>
 
 
       <p style="text-align: right"><a href="/articles/2016/05/13/Build-Your-Own-Cache-Busting-Service.html">Read more</a></p>
